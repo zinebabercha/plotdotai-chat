@@ -45,7 +45,7 @@ In the `step3_NER result to RAG` folder:
    - The original screenplay file (`film_script2.txt`)
 3. Outputs:
    - `character_details.json`
-   - `location_details.json` (Note: Currently only character JSON is available due to quota limitations. We'll need to regenerate this using the OpenAI API key)
+   - `location_details.json` (Note: Currently only character JSON is available due to quota limitations. We'll need to regenerate this using the OpenAI API key, the .env has the used key for now)
 
 ### Step 4: Knowledge Graph Creation
 
