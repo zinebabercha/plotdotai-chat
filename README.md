@@ -9,8 +9,13 @@ This repository contains a chatbot system that extracts useful information from 
 ```
 git clone https://github.com/zinebabercha/plotdotai-chat.git
 cd plotdotai-chat
-pip install pandas tqdm gliner google-generativeai langchain langchain-community faiss-cpu python-dotenv
+python -m venv ner_env
+ner_env\Scripts\activate
+pip install numpy pandas tqdm gliner google-generativeai langchain langchain-community faiss-cpu python-dotenv langchain-openai networkx pyvis matplotlib
+
+
 ```
+
 
 ## Pipeline Overview
 

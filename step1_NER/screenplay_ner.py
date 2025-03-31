@@ -72,7 +72,7 @@ def extract_entities_with_gliner(model, scenes):
     known_locations = set()  # Track known locations to help with disambiguation
     
     # Define entity types to extract
-    entity_types = ["person", "character", "location", "place"]
+    entity_types = ["person", "character", "location", "place","other"]
     
     print("Extracting entities from screenplay using GLiNER...")
     
@@ -303,7 +303,7 @@ def save_results(entities_data, analysis_data, relationships, output_dir):
         for char in entities_data["characters"]
     ])
     characters_df = characters_df.sort_values("mentions", ascending=False)
-    characters_df.to_csv(os.path.join(output_dir, "characters.csv"), index=False)
+    characters_df.to_csv(os.path.join(output_dir, "characters1.csv"), index=False)
     
     # Save all locations
     locations_df = pd.DataFrame([
@@ -311,7 +311,7 @@ def save_results(entities_data, analysis_data, relationships, output_dir):
         for loc in entities_data["locations"]
     ])
     locations_df = locations_df.sort_values("mentions", ascending=False)
-    locations_df.to_csv(os.path.join(output_dir, "locations.csv"), index=False)
+    locations_df.to_csv(os.path.join(output_dir, "locations1.csv"), index=False)
     
     # Save scene entities
     scene_entities_df = pd.DataFrame(entities_data["scene_entities"])

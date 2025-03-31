@@ -1,0 +1,29 @@
+output:
+Results saved to try2
+
+--- SCREENPLAY ANALYSIS SUMMARY ---
+Found 69 characters and 24 locations.
+
+Main Characters:
+- Phoenix (282 mentions)
+- ZARA (78 mentions)
+- RORY (70 mentions)
+
+Main Locations:
+- CATACOMBS (18 mentions)
+- CHROMATIC (14 mentions)
+- THE (10 mentions)
+
+Top Character Relationships:
+- Phoenix & ZARA appear together in 8 scenes
+- ZARA & Phoenix appear together in 8 scenes
+- ELDERLY ARTIST & ELDERLY appear together in 5 scenes
+- ELDERLY ARTIST & ARTIST appear together in 5 scenes
+- ELDERLY & ELDERLY ARTIST appear together in 5 scenes
+
+
+
+Try 2 is after adding the tag "other"
+
+
+

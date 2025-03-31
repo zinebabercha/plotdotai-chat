@@ -1,0 +1,26 @@
+source,relationship,target
+1. Phoenix,feels complex emotions towards,Marcus
+2. Phoenix,inspired by,Marcus
+3. Phoenix,collaborates with,Rory
+4. Phoenix,learns from,Rory
+5. Phoenix,shares artistic vision with,Rory
+6. Phoenix,respects,Zara
+7. Phoenix,inspired by,Zara
+8. Phoenix,leads,Underground Artists
+9. Phoenix,motivates,Underground Artists
+10. Phoenix,influenced by,Mother
+11. Phoenix,admired by,Elderly Artist
+12. Phoenix,inspires,Kai
+13. Phoenix,inspires,Maya
+14. Phoenix,inspires,Senna
+15. Phoenix,inspires,Senna's Brother
+16. Rory,supports,Phoenix
+17. Rory,collaborates with,Phoenix
+18. Zara,supports,Phoenix
+19. Zara,respects,Phoenix
+20. Underground Artists,follow,Phoenix
+21. Elderly Artist,respects,Phoenix
+22. Maya,respects,Phoenix
+23. Senna,inspired by,Phoenix
+24. Senna's Brother,inspired by,Phoenix
+25. Kai,respects,Phoenix
