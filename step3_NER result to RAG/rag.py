@@ -1,31 +1,29 @@
 import os
 import json
 import pandas as pd
-import google.generativeai as genai
+import openai
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain.schema import Document
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from dotenv import load_dotenv
 
+# Load environment variables and configure OpenAI
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+openai.api_key = os.getenv("OPENAI_API_KEY")
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 class ScriptAnalyzer:
-    def __init__(self, google_api_key: str = None):
+    def __init__(self):
         """Initialize the ScriptAnalyzer and related components."""
-        if google_api_key:
-            genai.configure(api_key=google_api_key)
-        
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1500,
             chunk_overlap=200,
             separators=["\n\n", "\n", ". ", " ", ""]
         )
         
-        self.embeddings = GoogleGenerativeAIEmbeddings(
-            model="models/embedding-001",
-            google_api_key=os.getenv("GEMINI_API_KEY")
+        self.embeddings = OpenAIEmbeddings(
+            openai_api_key=os.getenv("OPENAI_API_KEY")
         )
     
     def load_script(self, script_path: str) -> str:
@@ -46,32 +44,29 @@ class ScriptAnalyzer:
         docs = vector_store.similarity_search(query, k=k)
         return "\n\n".join([doc.page_content for doc in docs])
     
-    def analyze_character(self, vector_store, character_name: str) -> dict:
-        """
-        Analyze a specific character in detail.
-        Returns a JSON profile with detailed information about the character.
-        """
-        query = f"Tell me everything about the character named {character_name}"
+    def analyze_all_characters(self, vector_store, character_names: list) -> list:
+        """Analyze all characters in one prompt."""
+        query = "Tell me everything about the following characters: " + ", ".join(character_names)
         context = self.get_relevant_context(vector_store, query, k=8)
         
-        system_prompt = f"""
-        You are a professional script analyst. You need to extract detailed information about the character '{character_name}' from the provided script context.
+        system_prompt = """
+        You are a professional script analyst. You need to extract detailed information about multiple characters from the provided script context.
         Only include information that's explicitly stated or strongly implied in the text.
         """
         
         user_prompt = f"""
-        Analyze this character from the script context:
+        Analyze these characters from the script context:
         
-        Character: {character_name}
+        Characters: {', '.join(character_names)}
         
         Context:
         {context}
         
-        Generate a detailed JSON profile with the following structure:
+        Generate a list of detailed JSON profiles, one for each character, with the following structure for each:
         {{
           "character": {{
             "about": {{
-              "role": "",
+              "role": (one of : "protagonist", "antagonist", "deuteragonist", "tritagonist", "mentor", "sidekick", "foil", "confidant", "villain", "anti-hero", "anti-villain" ),
               "personalInformation": {{
                 "firstName": "",
                 "lastName": "",
@@ -145,49 +140,50 @@ class ScriptAnalyzer:
           }}
         }}
         
-        Only include information that is directly supported by the text. Leave fields empty if information isn't available.
+        Return a JSON array containing one object per character. Only include information that is directly supported by the text. 
+        Leave fields empty if information isn't available.
         """
         
-        # Initialize the Gemini model (using Gemini 1.5 Flash)
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        response = model.generate_content([
-            {"role": "user", "parts": [system_prompt + "\n\n" + user_prompt]}
-        ])
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.2
+        )
         
+        content_text = response.choices[0].message.content
         try:
-            content_text = response.text
-            start_idx = content_text.find('{')
-            end_idx = content_text.rfind('}') + 1
+            start_idx = content_text.find('[')
+            end_idx = content_text.rfind(']') + 1
             if start_idx != -1 and end_idx != -1:
                 json_str = content_text[start_idx:end_idx]
                 return json.loads(json_str)
             else:
-                return {"raw_response": content_text}
+                return [{"raw_response": content_text}]
         except json.JSONDecodeError:
-            return {"raw_response": response.text}
+            return [{"raw_response": content_text}]
     
-    def analyze_location(self, vector_store, location_name: str) -> dict:
-        """
-        Analyze a specific location in detail.
-        Returns a JSON profile with detailed information about the location.
-        """
-        query = f"Tell me everything about the location named {location_name}"
+    def analyze_all_locations(self, vector_store, location_names: list) -> list:
+        """Analyze all locations in one prompt."""
+        query = "Tell me everything about the following locations: " + ", ".join(location_names)
         context = self.get_relevant_context(vector_store, query, k=5)
         
-        system_prompt = f"""
-        You are a professional script analyst. You need to extract detailed information about the location '{location_name}' from the provided script context.
+        system_prompt = """
+        You are a professional script analyst. You need to extract detailed information about multiple locations from the provided script context.
         Only include information that's explicitly stated or strongly implied in the text.
         """
         
         user_prompt = f"""
-        Analyze this location from the script context:
+        Analyze these locations from the script context:
         
-        Location: {location_name}
+        Locations: {', '.join(location_names)}
         
         Context:
         {context}
         
-        Generate a detailed JSON profile with the following structure:
+        Generate a list of detailed JSON profiles, one for each location, with the following structure for each:
         {{
           "location": {{
             "about": {{
@@ -212,30 +208,34 @@ class ScriptAnalyzer:
           }}
         }}
         
-        Only include information that is directly supported by the text. Leave fields empty if information isn't available.
+        Return a JSON array containing one object per location. Only include information that is directly supported by the text. 
+        Leave fields empty if information isn't available.
         """
         
-        model = genai.GenerativeModel('gemini-1.5-flash')
-        response = model.generate_content([
-            {"role": "user", "parts": [system_prompt + "\n\n" + user_prompt]}
-        ])
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.2
+        )
         
+        content_text = response.choices[0].message.content
         try:
-            content_text = response.text
-            start_idx = content_text.find('{')
-            end_idx = content_text.rfind('}') + 1
+            start_idx = content_text.find('[')
+            end_idx = content_text.rfind(']') + 1
             if start_idx != -1 and end_idx != -1:
                 json_str = content_text[start_idx:end_idx]
                 return json.loads(json_str)
             else:
-                return {"raw_response": content_text}
+                return [{"raw_response": content_text}]
         except json.JSONDecodeError:
-            return {"raw_response": response.text}
+            return [{"raw_response": content_text}]
 
 def process_characters_from_csv(csv_path: str, script_path: str, output_path: str):
     """
-    Processes a CSV file of character data (with columns: character, normalized_name, mentions),
-    analyzes each character from the film script using the Gemini API, and saves the results as JSON.
+    Processes a CSV file of character data and analyzes all characters in one prompt.
     """
     analyzer = ScriptAnalyzer()
     
@@ -247,12 +247,18 @@ def process_characters_from_csv(csv_path: str, script_path: str, output_path: st
     
     # Read the CSV file with character data
     df = pd.read_csv(csv_path)
+    character_names = df["normalized_name"].tolist()
     character_results = []
     
+    print(f"Analyzing all characters: {', '.join(character_names)}")
+    analyses = analyzer.analyze_all_characters(vector_store, character_names)
+    
+    # Match analyses with original CSV data
     for idx, row in df.iterrows():
         character_name = row["normalized_name"]
-        print(f"Analyzing character: {character_name}")
-        analysis = analyzer.analyze_character(vector_store, character_name)
+        analysis = next((item for item in analyses if item["character"]["about"]["personalInformation"].get("firstName", "").lower() == character_name.lower() or 
+                        item["character"]["about"]["personalInformation"].get("lastName", "").lower() == character_name.lower()), 
+                        analyses[idx] if idx < len(analyses) else {"raw_response": "No analysis found"})
         entry = {
             "character": row["character"],
             "normalized_name": character_name,
@@ -268,8 +274,7 @@ def process_characters_from_csv(csv_path: str, script_path: str, output_path: st
 
 def process_locations_from_csv(csv_path: str, script_path: str, output_path: str):
     """
-    Processes a CSV file of location data (with columns: location, normalized_name, mentions),
-    analyzes each location from the film script using the Gemini API, and saves the results as JSON.
+    Processes a CSV file of location data and analyzes all locations in one prompt.
     """
     analyzer = ScriptAnalyzer()
     
@@ -281,12 +286,17 @@ def process_locations_from_csv(csv_path: str, script_path: str, output_path: str
     
     # Read the CSV file with location data
     df = pd.read_csv(csv_path)
+    location_names = df["normalized_name"].tolist()
     location_results = []
     
+    print(f"Analyzing all locations: {', '.join(location_names)}")
+    analyses = analyzer.analyze_all_locations(vector_store, location_names)
+    
+    # Match analyses with original CSV data
     for idx, row in df.iterrows():
         location_name = row["normalized_name"]
-        print(f"Analyzing location: {location_name}")
-        analysis = analyzer.analyze_location(vector_store, location_name)
+        analysis = next((item for item in analyses if item["location"]["about"]["basicInformation"]["name"].lower() == location_name.lower()), 
+                        analyses[idx] if idx < len(analyses) else {"raw_response": "No analysis found"})
         entry = {
             "location": row["location"],
             "normalized_name": location_name,
@@ -302,9 +312,9 @@ def process_locations_from_csv(csv_path: str, script_path: str, output_path: str
 
 if __name__ == "__main__":
     # Define file paths
-    CHARACTERS_CSV = "filtered_characters.csv"    
-    LOCATIONS_CSV = "filtered_locations.csv"      
-    SCRIPT_PATH = "film_script2.txt"           # Film script draft file
+    CHARACTERS_CSV = "filtered_characters.csv"
+    LOCATIONS_CSV = "filtered_locations.csv"
+    SCRIPT_PATH = "script.txt"
     OUTPUT_CHARACTERS_JSON = "character_details.json"
     OUTPUT_LOCATIONS_JSON = "location_details.json"
     
