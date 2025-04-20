@@ -1,0 +1,21 @@
+source,relationship,target
+1. Phoenix,is the daughter of,Maya
+2. Phoenix,collaborates with,Rory
+3. Phoenix,is a leader of,Underground Artists
+4. Phoenix,is inspired by,Zara
+5. Phoenix,is supported by,Kai
+6. Phoenix,is admired by,Elderly Artist
+7. Phoenix,is encouraged by,Senna
+8. Phoenix,is pursued by,Enforcer
+9. Phoenix,is a part of,Chromatic Catacombs
+10. Rory,is a collaborator of,Phoenix
+11. Rory,is a part of,Underground Artists
+12. Rory,is a supporter of,Phoenix
+13. Zara,is an inspirer of,Phoenix
+14. Zara,is a part of,Underground Artists
+15. Kai,is a supporter of,Phoenix
+16. Kai,is a part of,Underground Artists
+17. Maya,is the mother of,Phoenix
+18. Enforcer,is an adversary of,Phoenix
+19. Elderly Artist,is an admirer of,Phoenix
+20. Senna,is encouraged by,Phoenix

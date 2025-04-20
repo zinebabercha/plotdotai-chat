@@ -5,7 +5,7 @@ import json
 import csv
 
 # Configuration
-# API_KEY = os.environ['OPENAI_API_KEY']  # Set your API key in environment variables
+# API_KEY = os.environ['OPENAI_API_KEY']  
 os.environ['OPENAI_API_KEY']='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'
 
 client = openai.OpenAI(api_key=os.environ['OPENAI_API_KEY'])
@@ -44,7 +44,7 @@ def build_prompt(csv_rows, entity_type):
 def call_openai_api(prompt):
     """Calls the OpenAI API with the provided prompt and returns the response."""
     response = client.chat.completions.create(
-        model="gpt-4o-mini",  # You can change this to gpt-4 or other available models
+        model="gpt-4o-mini",  
         messages=[
             {"role": "system", "content": "You are a helpful assistant that processes CSV data."},
             {"role": "user", "content": prompt}
@@ -52,11 +52,8 @@ def call_openai_api(prompt):
         temperature=0.2
     )
     response_text = response.choices[0].message.content
-    # remove ```csv
     response_text = response_text.replace("```csv", "")
-    # remove ```
     response_text = response_text.replace("```", "")
-    # remove leading newlines   
     response_text = response_text.lstrip("\n")
     return response_text
 
@@ -64,19 +61,15 @@ def call_openai_api(prompt):
 INPUT_CSV = "characters.csv"
 OUTPUT_CSV = "filtered_characters5.csv"
 
-# Read the CSV containing the extracted entities
 csv_rows = read_csv(INPUT_CSV)
 
-# Build the prompt that asks OpenAI to filter out invalid entities
 prompt = build_prompt(csv_rows, "character")
 print("Sending prompt to OpenAI API...")
 
 filtered_csv_text = call_openai_api(prompt)
 
-# Convert the text back into rows
 filtered_rows = list(csv.reader(filtered_csv_text.splitlines()))
 
-# Save the filtered CSV
 write_csv(OUTPUT_CSV, filtered_rows)
 print(f"Filtered CSV saved to {OUTPUT_CSV}")
 
@@ -87,15 +80,12 @@ OUTPUT_CSV = "filtered_locations5.csv"
 # Read the CSV containing the extracted entities
 csv_rows = read_csv(INPUT_CSV)
 
-# Build the prompt that asks OpenAI to filter out invalid entities
 prompt = build_prompt(csv_rows, "location")
 print("Sending prompt to OpenAI API...")
 
 filtered_csv_text = call_openai_api(prompt)
 
-# Convert the text back into rows
 filtered_rows = list(csv.reader(filtered_csv_text.splitlines()))
 
-# Save the filtered CSV
 write_csv(OUTPUT_CSV, filtered_rows)
 print(f"Filtered CSV saved to {OUTPUT_CSV}")
