@@ -1,0 +1,349 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "1. Phoenix", "label": "1. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Marcus", "label": "Marcus", "shape": "dot"}, {"color": "#97c2fc", "id": "2. Phoenix", "label": "2. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Rory", "label": "Rory", "shape": "dot"}, {"color": "#97c2fc", "id": "3. Phoenix", "label": "3. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "her mother", "label": "her mother", "shape": "dot"}, {"color": "#97c2fc", "id": "4. Phoenix", "label": "4. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "underground artists", "label": "underground artists", "shape": "dot"}, {"color": "#97c2fc", "id": "5. Phoenix", "label": "5. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Zara", "label": "Zara", "shape": "dot"}, {"color": "#97c2fc", "id": "6. Phoenix", "label": "6. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Kai", "label": "Kai", "shape": "dot"}, {"color": "#97c2fc", "id": "7. Phoenix", "label": "7. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Maya", "label": "Maya", "shape": "dot"}, {"color": "#97c2fc", "id": "8. Phoenix", "label": "8. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Senna", "label": "Senna", "shape": "dot"}, {"color": "#97c2fc", "id": "9. Phoenix", "label": "9. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Elderly Artist", "label": "Elderly Artist", "shape": "dot"}, {"color": "#97c2fc", "id": "10. Phoenix", "label": "10. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "Young Artist", "label": "Young Artist", "shape": "dot"}, {"color": "#97c2fc", "id": "11. Phoenix", "label": "11. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "her art", "label": "her art", "shape": "dot"}, {"color": "#97c2fc", "id": "12. Phoenix", "label": "12. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "her sanctuary", "label": "her sanctuary", "shape": "dot"}, {"color": "#97c2fc", "id": "13. Phoenix", "label": "13. Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "her mother\u0027s pendant", "label": "her mother\u0027s pendant", "shape": "dot"}, {"color": "#97c2fc", "id": "14. Rory", "label": "14. Rory", "shape": "dot"}, {"color": "#97c2fc", "id": "Phoenix", "label": "Phoenix", "shape": "dot"}, {"color": "#97c2fc", "id": "15. Rory", "label": "15. Rory", "shape": "dot"}, {"color": "#97c2fc", "id": "Phoenix\u0027s revolution", "label": "Phoenix\u0027s revolution", "shape": "dot"}, {"color": "#97c2fc", "id": "16. Zara", "label": "16. Zara", "shape": "dot"}, {"color": "#97c2fc", "id": "17. Zara", "label": "17. Zara", "shape": "dot"}, {"color": "#97c2fc", "id": "18. Kai", "label": "18. Kai", "shape": "dot"}, {"color": "#97c2fc", "id": "Phoenix\u0027s art", "label": "Phoenix\u0027s art", "shape": "dot"}, {"color": "#97c2fc", "id": "19. Maya", "label": "19. Maya", "shape": "dot"}, {"color": "#97c2fc", "id": "20. Senna", "label": "20. Senna", "shape": "dot"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "1. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Marcus"}, {"arrows": "to", "from": "2. Phoenix", "label": "collaborates with", "title": "collaborates with", "to": "Rory"}, {"arrows": "to", "from": "3. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "her mother"}, {"arrows": "to", "from": "4. Phoenix", "label": "leads", "title": "leads", "to": "underground artists"}, {"arrows": "to", "from": "5. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Zara"}, {"arrows": "to", "from": "6. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Kai"}, {"arrows": "to", "from": "7. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Maya"}, {"arrows": "to", "from": "8. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Senna"}, {"arrows": "to", "from": "9. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Elderly Artist"}, {"arrows": "to", "from": "10. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Young Artist"}, {"arrows": "to", "from": "11. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "her art"}, {"arrows": "to", "from": "12. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "her sanctuary"}, {"arrows": "to", "from": "13. Phoenix", "label": "has emotional connection with", "title": "has emotional connection with", "to": "her mother\u0027s pendant"}, {"arrows": "to", "from": "14. Rory", "label": "collaborates with", "title": "collaborates with", "to": "Phoenix"}, {"arrows": "to", "from": "15. Rory", "label": "supports", "title": "supports", "to": "Phoenix\u0027s revolution"}, {"arrows": "to", "from": "16. Zara", "label": "supports", "title": "supports", "to": "Phoenix\u0027s revolution"}, {"arrows": "to", "from": "17. Zara", "label": "has emotional connection with", "title": "has emotional connection with", "to": "Phoenix"}, {"arrows": "to", "from": "18. Kai", "label": "supports", "title": "supports", "to": "Phoenix\u0027s art"}, {"arrows": "to", "from": "19. Maya", "label": "supports", "title": "supports", "to": "Phoenix\u0027s art"}, {"arrows": "to", "from": "20. Senna", "label": "inspired by", "title": "inspired by", "to": "Phoenix\u0027s art"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

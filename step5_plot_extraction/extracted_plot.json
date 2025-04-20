@@ -1,0 +1,86 @@
+{
+    "Genre": "Sci-Fi",
+    "Subgenre": "Dystopian",
+    "Theme": "Artistic Rebellion",
+    "Style": "Action",
+    "Structure": "Three Acts Structure",
+    "Acts": {
+        "Act I": {
+            "Setup": {
+                "Opening Scene": "Phoenix, a rebellious artist, hides from enforcers in a dystopian society that suppresses creativity. She escapes into a hidden maintenance shaft.",
+                "Inciting Incident": "Phoenix finds a familiar symbol scratched into the metal: a phoenix rising from geometric flames.",
+                "Major Characters Introduced": "Phoenix, Enforcers, Marcus",
+                "First Plot Point": "Phoenix decides to join the artistic rebellion and fight back with art and light.",
+                "Sequences": [
+                    {
+                        "Title": "Phoenix's Escape",
+                        "Description": "Phoenix evades enforcers, revealing her skills and determination.",
+                        "Scenes": [
+                            {
+                                "Title": "Phoenix's Hideout",
+                                "Description": "Phoenix enters a hidden chamber filled with confiscated artworks.",
+                                "Beats": [
+                                    {
+                                        "Title": "Phoenix's Resolve",
+                                        "Description": "Phoenix swears to continue fighting for artistic freedom."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Act II": {
+            "Confrontation": {
+                "Rising Conflict": "Phoenix and her fellow artists continue their rebellion, creating art in the catacombs.",
+                "Increasing Tension": "Phoenix discovers a sketchbook revealing that Marcus, an enforcer, was once an artist like them.",
+                "Midpoint": "Phoenix and the artists make a pact to continue their fight, creating a symbol of infinity with their bioluminescent paint.",
+                "Second Plot Point": "Enforcers storm the catacombs, causing chaos and scattering the artists.",
+                "Sequences": [
+                    {
+                        "Title": "Artistic Rebellion",
+                        "Description": "Phoenix and the artists create art and plan their resistance.",
+                        "Scenes": [
+                            {
+                                "Title": "Marcus's Revelation",
+                                "Description": "Phoenix discovers Marcus's past as an artist.",
+                                "Beats": [
+                                    {
+                                        "Title": "The Artists' Pact",
+                                        "Description": "The artists make a pact to continue their fight."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Act III": {
+            "Resolution": {
+                "Climax": "Phoenix stands her ground as the enforcers advance, protecting the other artists.",
+                "Falling Action": "Artists escape into the shadows of the quantum server stacks.",
+                "Denouement": "Phoenix remains alone in the catacombs, her mural flickering in the presence of the enforcers.",
+                "Sequences": [
+                    {
+                        "Title": "The Final Stand",
+                        "Description": "Phoenix confronts the enforcers, allowing the other artists to escape.",
+                        "Scenes": [
+                            {
+                                "Title": "Phoenix's Sacrifice",
+                                "Description": "Phoenix stands alone against the enforcers, her mural flickering.",
+                                "Beats": [
+                                    {
+                                        "Title": "Phoenix's Resolve",
+                                        "Description": "Phoenix remains defiant, her freckles pulsing with energy."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,682 @@
+[
+  {
+    "character_name": "Phoenix",
+    "analysis": {
+      "about": {
+        "role": "Artist",
+        "role_inferred": "protagonist",
+        "personalInformation": {
+          "firstName": "Phoenix",
+          "lastName": "Chen",
+          "nickname": "",
+          "gender": "Female",
+          "species": "Human",
+          "ethnicity": "",
+          "age": "Unknown",
+          "birthday": "",
+          "birthplace": "",
+          "residence": ""
+        },
+        "appearance": {
+          "physicalDescription": "Luminescent freckles, multi-colored hair",
+          "distinctiveFeatures": "Luminescent freckles, bioluminescent paint",
+          "clothingStyle": "Paint-splattered hoodie, painted sneakers"
+        },
+        "background": {
+          "occupation": "Artist",
+          "education": "",
+          "family": "Mother (deceased or absent)"
+        },
+        "personality": {
+          "temperament": "Determined, passionate",
+          "personalityTraits": [
+            "Creative",
+            "Resilient",
+            "Defiant"
+          ],
+          "likes": [
+            "Art",
+            "Rebellion"
+          ],
+          "dislikes": [
+            "Oppression",
+            "Isolation"
+          ],
+          "habits": [
+            "Sketching",
+            "Painting"
+          ]
+        }
+      },
+      "summary": {
+        "inDepth": "Phoenix is a determined artist who uses her art as a form of rebellion against an oppressive regime. Her luminescent freckles and bioluminescent paint symbolize her defiance and creativity.",
+        "atAGlance": "A rebellious artist using bioluminescent art to fight oppression.",
+        "flashcard": "Phoenix: A defiant artist whose bioluminescent art symbolizes rebellion."
+      },
+      "deepDive": {
+        "backgroundAndOrigin": {
+          "origin": "",
+          "familyHistory": "Her mother is a significant influence, possibly deceased or absent.",
+          "keyLifeEvents": [
+            "Creating murals",
+            "Joining the underground art movement"
+          ]
+        },
+        "personalityTraits": {
+          "strengths": [
+            "Creativity",
+            "Courage"
+          ],
+          "weaknesses": [
+            "Isolation tendencies"
+          ],
+          "fears": [
+            "Oppression",
+            "Being silenced"
+          ],
+          "motivations": [
+            "Freedom",
+            "Expression"
+          ],
+          "values": [
+            "Art",
+            "Rebellion",
+            "Community"
+          ]
+        },
+        "goalsConflicts": {
+          "shortTermGoals": [
+            "Create impactful art"
+          ],
+          "longTermGoals": [
+            "Overthrow oppressive regime"
+          ],
+          "internalConflicts": [
+            "Struggle with isolation"
+          ],
+          "externalConflicts": [
+            "Oppression by enforcers"
+          ]
+        },
+        "skillsAndAbilities": {
+          "training": "",
+          "specializedSkills": [
+            "Bioluminescent painting",
+            "Artistic expression"
+          ]
+        },
+        "hobbiesAndGrowth": {
+          "growth": "Grows from a lone artist to a leader in the art rebellion.",
+          "turningPoints": [
+            "Joining the underground artists"
+          ],
+          "hobbies": [
+            "Sketching",
+            "Painting"
+          ]
+        },
+        "speechAndRepresentation": {
+          "dialogueStyle": "Passionate, determined",
+          "speechPatterns": "",
+          "quotes": [
+            "They can lock away our bodies, but they can't chain our spirits.",
+            "Love is the strongest rebellion of all."
+          ],
+          "symbols": [
+            "Bioluminescent paint",
+            "Phoenix imagery"
+          ]
+        }
+      }
+    },
+    "character": "Phoenix",
+    "normalized_name": "Phoenix",
+    "mentions": 356
+  },
+  {
+    "character_name": "Zara",
+    "analysis": {
+      "about": {
+        "role": "Artist",
+        "role_inferred": "mentor",
+        "personalInformation": {
+          "firstName": "Zara",
+          "lastName": "",
+          "nickname": "",
+          "gender": "Female",
+          "species": "Human",
+          "ethnicity": "",
+          "age": "Unknown",
+          "birthday": "",
+          "birthplace": "",
+          "residence": ""
+        },
+        "appearance": {
+          "physicalDescription": "",
+          "distinctiveFeatures": "Subcutaneous ink patterns",
+          "clothingStyle": ""
+        },
+        "background": {
+          "occupation": "Artist",
+          "education": "",
+          "family": ""
+        },
+        "personality": {
+          "temperament": "Wise, supportive",
+          "personalityTraits": [
+            "Encouraging",
+            "Inspirational"
+          ],
+          "likes": [
+            "Art",
+            "Community"
+          ],
+          "dislikes": [
+            "Oppression"
+          ],
+          "habits": []
+        }
+      },
+      "summary": {
+        "inDepth": "Zara is a mentor figure in the underground art movement, guiding and inspiring others with her wisdom and experience.",
+        "atAGlance": "A mentor and artist with a deep connection to the art community.",
+        "flashcard": "Zara: A wise mentor guiding the underground art movement."
+      },
+      "deepDive": {
+        "backgroundAndOrigin": {
+          "origin": "",
+          "familyHistory": "",
+          "keyLifeEvents": []
+        },
+        "personalityTraits": {
+          "strengths": [
+            "Wisdom",
+            "Inspiration"
+          ],
+          "weaknesses": [],
+          "fears": [],
+          "motivations": [
+            "Empowerment through art"
+          ],
+          "values": [
+            "Community",
+            "Artistic expression"
+          ]
+        },
+        "goalsConflicts": {
+          "shortTermGoals": [
+            "Guide new artists"
+          ],
+          "longTermGoals": [
+            "Foster a strong art community"
+          ],
+          "internalConflicts": [],
+          "externalConflicts": [
+            "Oppression by authorities"
+          ]
+        },
+        "skillsAndAbilities": {
+          "training": "",
+          "specializedSkills": [
+            "Artistic guidance"
+          ]
+        },
+        "hobbiesAndGrowth": {
+          "growth": "",
+          "turningPoints": [],
+          "hobbies": []
+        },
+        "speechAndRepresentation": {
+          "dialogueStyle": "Warm, encouraging",
+          "speechPatterns": "",
+          "quotes": [
+            "The shadows can't dim what burns bright within you.",
+            "Welcome to the revolution."
+          ],
+          "symbols": [
+            "Ink patterns"
+          ]
+        }
+      }
+    },
+    "character": "Zara",
+    "normalized_name": "Zara",
+    "mentions": 92
+  },
+  {
+    "character_name": "Rory",
+    "analysis": {
+      "about": {
+        "role": "Technologist",
+        "role_inferred": "sidekick",
+        "personalInformation": {
+          "firstName": "Rory",
+          "lastName": "",
+          "nickname": "",
+          "gender": "Male",
+          "species": "Human",
+          "ethnicity": "",
+          "age": "Unknown",
+          "birthday": "",
+          "birthplace": "",
+          "residence": ""
+        },
+        "appearance": {
+          "physicalDescription": "",
+          "distinctiveFeatures": "Metallic implants",
+          "clothingStyle": ""
+        },
+        "background": {
+          "occupation": "Technologist",
+          "education": "",
+          "family": ""
+        },
+        "personality": {
+          "temperament": "Innovative, enthusiastic",
+          "personalityTraits": [
+            "Creative",
+            "Tech-savvy"
+          ],
+          "likes": [
+            "Technology",
+            "Art"
+          ],
+          "dislikes": [],
+          "habits": []
+        }
+      },
+      "summary": {
+        "inDepth": "Rory is a technologist who collaborates with artists to integrate technology with art, enhancing the impact of their rebellion.",
+        "atAGlance": "A tech-savvy collaborator in the art rebellion.",
+        "flashcard": "Rory: A technologist who merges art with technology for the rebellion."
+      },
+      "deepDive": {
+        "backgroundAndOrigin": {
+          "origin": "",
+          "familyHistory": "",
+          "keyLifeEvents": []
+        },
+        "personalityTraits": {
+          "strengths": [
+            "Technical expertise",
+            "Creativity"
+          ],
+          "weaknesses": [],
+          "fears": [],
+          "motivations": [
+            "Innovation",
+            "Rebellion"
+          ],
+          "values": [
+            "Art",
+            "Technology"
+          ]
+        },
+        "goalsConflicts": {
+          "shortTermGoals": [
+            "Develop new tech for art"
+          ],
+          "longTermGoals": [
+            "Integrate technology with art"
+          ],
+          "internalConflicts": [],
+          "externalConflicts": [
+            "Opposition from authorities"
+          ]
+        },
+        "skillsAndAbilities": {
+          "training": "",
+          "specializedSkills": [
+            "Programming",
+            "Tech innovation"
+          ]
+        },
+        "hobbiesAndGrowth": {
+          "growth": "",
+          "turningPoints": [],
+          "hobbies": []
+        },
+        "speechAndRepresentation": {
+          "dialogueStyle": "Enthusiastic, collaborative",
+          "speechPatterns": "",
+          "quotes": [
+            "Technology amplifies art.",
+            "Art gives technology its soul."
+          ],
+          "symbols": [
+            "Quantum pigments",
+            "Digital art"
+          ]
+        }
+      }
+    },
+    "character": "Rory",
+    "normalized_name": "Rory",
+    "mentions": 70
+  },
+  {
+    "character_name": "Enforcer",
+    "analysis": {
+      "about": {
+        "role": "Enforcer",
+        "role_inferred": "antagonist",
+        "personalInformation": {
+          "firstName": "",
+          "lastName": "",
+          "nickname": "",
+          "gender": "",
+          "species": "Human",
+          "ethnicity": "",
+          "age": "Unknown",
+          "birthday": "",
+          "birthplace": "",
+          "residence": ""
+        },
+        "appearance": {
+          "physicalDescription": "",
+          "distinctiveFeatures": "Sleek black armor, visors",
+          "clothingStyle": "Uniform"
+        },
+        "background": {
+          "occupation": "Enforcer",
+          "education": "",
+          "family": ""
+        },
+        "personality": {
+          "temperament": "Authoritative",
+          "personalityTraits": [
+            "Strict",
+            "Unyielding"
+          ],
+          "likes": [],
+          "dislikes": [
+            "Rebellion",
+            "Art"
+          ],
+          "habits": []
+        }
+      },
+      "summary": {
+        "inDepth": "Enforcers are the oppressive force tasked with suppressing artistic expression and maintaining control over the population.",
+        "atAGlance": "Oppressive enforcers suppressing artistic rebellion.",
+        "flashcard": "Enforcer: An agent of oppression against artistic expression."
+      },
+      "deepDive": {
+        "backgroundAndOrigin": {
+          "origin": "",
+          "familyHistory": "",
+          "keyLifeEvents": []
+        },
+        "personalityTraits": {
+          "strengths": [
+            "Authority",
+            "Control"
+          ],
+          "weaknesses": [
+            "Lack of creativity"
+          ],
+          "fears": [],
+          "motivations": [
+            "Control",
+            "Suppression"
+          ],
+          "values": [
+            "Order",
+            "Authority"
+          ]
+        },
+        "goalsConflicts": {
+          "shortTermGoals": [
+            "Suppress art"
+          ],
+          "longTermGoals": [
+            "Maintain control"
+          ],
+          "internalConflicts": [],
+          "externalConflicts": [
+            "Artistic rebellion"
+          ]
+        },
+        "skillsAndAbilities": {
+          "training": "",
+          "specializedSkills": [
+            "Enforcement",
+            "Surveillance"
+          ]
+        },
+        "hobbiesAndGrowth": {
+          "growth": "",
+          "turningPoints": [],
+          "hobbies": []
+        },
+        "speechAndRepresentation": {
+          "dialogueStyle": "Authoritative",
+          "speechPatterns": "",
+          "quotes": [
+            "Stop! In violation of Creative Suppression Act 2.7!"
+          ],
+          "symbols": [
+            "Uniform",
+            "Visor"
+          ]
+        }
+      }
+    },
+    "character": "Enforcer",
+    "normalized_name": "Enforcer",
+    "mentions": 25
+  },
+  {
+    "character_name": "Maya",
+    "analysis": {
+      "about": {
+        "role": "Artist",
+        "role_inferred": "confidant",
+        "personalInformation": {
+          "firstName": "Maya",
+          "lastName": "",
+          "nickname": "",
+          "gender": "Female",
+          "species": "Human",
+          "ethnicity": "",
+          "age": "20s",
+          "birthday": "",
+          "birthplace": "",
+          "residence": ""
+        },
+        "appearance": {
+          "physicalDescription": "",
+          "distinctiveFeatures": "Bioluminescent tattoos",
+          "clothingStyle": ""
+        },
+        "background": {
+          "occupation": "Artist",
+          "education": "",
+          "family": ""
+        },
+        "personality": {
+          "temperament": "Supportive, optimistic",
+          "personalityTraits": [
+            "Encouraging",
+            "Hopeful"
+          ],
+          "likes": [
+            "Art",
+            "Community"
+          ],
+          "dislikes": [
+            "Isolation"
+          ],
+          "habits": []
+        }
+      },
+      "summary": {
+        "inDepth": "Maya is a supportive artist who encourages unity and collaboration among the underground artists, emphasizing the strength found in togetherness.",
+        "atAGlance": "A supportive artist advocating for unity.",
+        "flashcard": "Maya: An artist who fosters unity and collaboration."
+      },
+      "deepDive": {
+        "backgroundAndOrigin": {
+          "origin": "",
+          "familyHistory": "",
+          "keyLifeEvents": []
+        },
+        "personalityTraits": {
+          "strengths": [
+            "Supportiveness",
+            "Optimism"
+          ],
+          "weaknesses": [],
+          "fears": [],
+          "motivations": [
+            "Unity",
+            "Collaboration"
+          ],
+          "values": [
+            "Community",
+            "Artistic expression"
+          ]
+        },
+        "goalsConflicts": {
+          "shortTermGoals": [
+            "Encourage collaboration"
+          ],
+          "longTermGoals": [
+            "Strengthen the art community"
+          ],
+          "internalConflicts": [],
+          "externalConflicts": [
+            "Oppression by authorities"
+          ]
+        },
+        "skillsAndAbilities": {
+          "training": "",
+          "specializedSkills": [
+            "Artistic collaboration"
+          ]
+        },
+        "hobbiesAndGrowth": {
+          "growth": "",
+          "turningPoints": [],
+          "hobbies": []
+        },
+        "speechAndRepresentation": {
+          "dialogueStyle": "Encouraging",
+          "speechPatterns": "",
+          "quotes": [
+            "That's what they want - to isolate us. But look around. Every piece of art here tells the same story: we're stronger together."
+          ],
+          "symbols": [
+            "Bioluminescent tattoos"
+          ]
+        }
+      }
+    },
+    "character": "Maya",
+    "normalized_name": "Maya",
+    "mentions": 11
+  },
+  {
+    "character_name": "Kai",
+    "analysis": {
+      "about": {
+        "role": "Artist",
+        "role_inferred": "other",
+        "personalInformation": {
+          "firstName": "Kai",
+          "lastName": "",
+          "nickname": "",
+          "gender": "Male",
+          "species": "Human",
+          "ethnicity": "",
+          "age": "16",
+          "birthday": "",
+          "birthplace": "",
+          "residence": ""
+        },
+        "appearance": {
+          "physicalDescription": "",
+          "distinctiveFeatures": "",
+          "clothingStyle": ""
+        },
+        "background": {
+          "occupation": "Artist",
+          "education": "",
+          "family": ""
+        },
+        "personality": {
+          "temperament": "Convicted, hopeful",
+          "personalityTraits": [
+            "Passionate",
+            "Hopeful"
+          ],
+          "likes": [
+            "Art"
+          ],
+          "dislikes": [],
+          "habits": []
+        }
+      },
+      "summary": {
+        "inDepth": "Kai is a young artist inspired by Phoenix's work, representing the new generation of artists who find hope and purpose in the rebellion.",
+        "atAGlance": "A young artist inspired by the rebellion.",
+        "flashcard": "Kai: A young artist inspired by Phoenix's work."
+      },
+      "deepDive": {
+        "backgroundAndOrigin": {
+          "origin": "",
+          "familyHistory": "",
+          "keyLifeEvents": []
+        },
+        "personalityTraits": {
+          "strengths": [
+            "Passion",
+            "Hope"
+          ],
+          "weaknesses": [],
+          "fears": [],
+          "motivations": [
+            "Artistic expression",
+            "Hope"
+          ],
+          "values": [
+            "Art",
+            "Community"
+          ]
+        },
+        "goalsConflicts": {
+          "shortTermGoals": [
+            "Create impactful art"
+          ],
+          "longTermGoals": [
+            "Contribute to the rebellion"
+          ],
+          "internalConflicts": [],
+          "externalConflicts": [
+            "Oppression by authorities"
+          ]
+        },
+        "skillsAndAbilities": {
+          "training": "",
+          "specializedSkills": []
+        },
+        "hobbiesAndGrowth": {
+          "growth": "",
+          "turningPoints": [],
+          "hobbies": []
+        },
+        "speechAndRepresentation": {
+          "dialogueStyle": "Hopeful",
+          "speechPatterns": "",
+          "quotes": [
+            "My whole block has been talking about your latest piece. The one with the broken chains?"
+          ],
+          "symbols": []
+        }
+      }
+    },
+    "character": "Kai",
+    "normalized_name": "Kai",
+    "mentions": 8
+  }
+]

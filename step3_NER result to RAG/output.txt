@@ -1,0 +1,27 @@
+(rag) C:\Users\Pc\Downloads\plotdotai-chat\step3_NER result to RAG>python main.py
+Initializing RAG Processor components...
+Using Embedding Model: text-embedding-3-large
+RAG Processor initialized.
+Chunking script text...
+Created 45 document chunks.
+Building FAISS vector store...
+Vector store built successfully.
+Collecting context for 6 character(s)...
+Gathering context:   0%|                                                                         | 0/6 [00:00<?, ?it/s]Retrieving top 12 relevant chunks for query: 'Detailed information about the character Phoenix: ...'
+Retrieved context length: 17113 characters.
+Gathering context:  17%|██████████▊                                                      | 1/6 [00:00<00:02,  1.95it/s]Retrieving top 12 relevant chunks for query: 'Detailed information about the character Zara: the...'
+Retrieved context length: 17913 characters.
+Gathering context:  33%|█████████████████████▋                                           | 2/6 [00:00<00:01,  2.16it/s]Retrieving top 12 relevant chunks for query: 'Detailed information about the character Rory: the...'
+Retrieved context length: 17895 characters.
+Gathering context:  50%|████████████████████████████████▌                                | 3/6 [00:01<00:01,  2.05it/s]Retrieving top 12 relevant chunks for query: 'Detailed information about the character Enforcer:...'
+Retrieved context length: 17380 characters.
+Gathering context:  67%|███████████████████████████████████████████▎                     | 4/6 [00:02<00:01,  1.63it/s]Retrieving top 12 relevant chunks for query: 'Detailed information about the character Maya: the...'
+Retrieved context length: 17264 characters.
+Gathering context:  83%|██████████████████████████████████████████████████████▏          | 5/6 [00:02<00:00,  1.79it/s]Retrieving top 12 relevant chunks for query: 'Detailed information about the character Kai: thei...'
+Retrieved context length: 17366 characters.
+Gathering context: 100%|█████████████████████████████████████████████████████████████████| 6/6 [00:03<00:00,  1.88it/s]
+Constructing batch prompt...
+Calling OpenAI Chat API (model: gpt-4o, temp: 0.2)...
+Received response from OpenAI.
+Completed analysis for 6 character(s).
+Saved character details to character_details_output8.json
