@@ -1,21 +1,28 @@
 source,relationship,target
-1. Phoenix,has emotional connection with,Marcus
+1. Phoenix,is daughter of,Maya
 2. Phoenix,collaborates with,Rory
-3. Phoenix,has emotional connection with,her mother
-4. Phoenix,leads,underground artists
-5. Phoenix,has emotional connection with,Zara
-6. Phoenix,has emotional connection with,Kai
-7. Phoenix,has emotional connection with,Maya
-8. Phoenix,has emotional connection with,Senna
-9. Phoenix,has emotional connection with,Elderly Artist
-10. Phoenix,has emotional connection with,Young Artist
-11. Phoenix,has emotional connection with,her art
-12. Phoenix,has emotional connection with,her sanctuary
-13. Phoenix,has emotional connection with,her mother's pendant
-14. Rory,collaborates with,Phoenix
-15. Rory,supports,Phoenix's revolution
-16. Zara,supports,Phoenix's revolution
-17. Zara,has emotional connection with,Phoenix
-18. Kai,supports,Phoenix's art
-19. Maya,supports,Phoenix's art
-20. Senna,inspired by,Phoenix's art
+3. Phoenix,is respected by,Zara
+4. Phoenix,is admired by,Kai
+5. Phoenix,is inspired by,Maya
+6. Phoenix,is supported by,Rory
+7. Phoenix,is part of,Underground Artists
+8. Phoenix,is leader of,Underground Artists
+9. Phoenix,is encouraged by,Elderly Artist
+10. Phoenix,is appreciated by,Senna
+11. Phoenix,is pursued by,Enforcer
+12. Rory,is part of,Underground Artists
+13. Rory,collaborates with,Phoenix
+14. Rory,is committed to,Underground Artists
+15. Zara,is part of,Underground Artists
+16. Zara,respects,Phoenix
+17. Zara,is proud of,Underground Artists
+18. Kai,is part of,Underground Artists
+19. Kai,admires,Phoenix
+20. Maya,is mother of,Phoenix
+21. Maya,inspires,Phoenix
+22. Enforcer,pursues,Phoenix
+23. Underground Artists,are led by,Phoenix
+24. Underground Artists,support,Phoenix
+25. Underground Artists,are committed to,Rory
+26. Elderly Artist,respects,Phoenix
+27. Senna,is inspired by,Phoenix
